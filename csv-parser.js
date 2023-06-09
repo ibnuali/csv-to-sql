@@ -34,7 +34,7 @@ fs.readFile(csvFilePath, "utf8", (err, data) => {
 
     const insertStatements = dataRows.map((rowData) => {
       const values = rowData.map((value) => {
-        if (value === null) return "NULL";
+        if (value === 'NULL') return value.replace(/'/g, "''");
         if (typeof value === "number") return value;
         const escapedValue = value.replace(/'/g, "''");
         return `'${escapedValue}'`;
